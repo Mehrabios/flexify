@@ -1,0 +1,56 @@
+{
+  "name": "flexify",
+  "version": "1.0.0",
+  "description": "Flexify is a lightweight CSS library based on flexbox used for page layout.",
+  "keywords": [
+    "css",
+    "grid",
+    "responsive",
+    "flexbox",
+    "scss",
+    "page-layout",
+    "flexify"
+  ],
+  "browserslist": [ "last 0 versions" ],
+  "author": {
+    "name": "Mehrab Anbarlou",
+    "url": "https://mehrabios.github.io"
+  },
+  "homepage": "https://github.com/Mehrabios/flexify",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mehrabios/flexify.git"
+  },
+  "license": "MIT",
+  "main": "scss/flexify.scss",
+  "style": "css/flexify.css",
+  "files": [
+    "css",
+    "scss",
+    "flexify.scss",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md"
+  ],
+  "scripts": {
+    "build:sass-compressed": "sass flexify.scss css/flexify.min.css --style=compressed --no-source-map",
+    "build:sass-expanded": "sass flexify.scss css/flexify.css --no-source-map",
+    "build:css-compressed": "postcss css/flexify.min.css -o css/flexify.min.css --no-map",
+    "build:css-expanded": "postcss css/flexify.css -o css/flexify.css --no-map",
+    "build:compressed": "npm run build:sass-compressed && npm run build:css-compressed",
+    "build:expanded": "npm run build:sass-expanded && npm run build:css-expanded",
+    "build": "npm run build:compressed && npm run build:expanded",
+    "watch:sass": "sass flexify.scss css/flexify.css --watch --no-source-map",
+    "watch:css": "postcss css/flexify.css -o css/flexify.css --no-map --watch",
+    "watch": "npm run watch:sass && npm run watch:css"
+  },
+  "bugs": {
+    "url": "https://github.com/Mehrabios/flexify/issues"
+  },
+  "dependencies": {
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "postcss-preset-env": "^10.0.7",
+    "sass": "^1.79.5"
+  }
+}

@@ -1,0 +1,24 @@
+@use 'variables' as vars;
+
+:root {
+  --#{vars.$flexify-vars-prefix}gutter-size: #{vars.$flexify-gutter-size};
+  --#{vars.$flexify-vars-prefix}container-padding: #{vars.$flexify-container-padding};
+}
+
+* {
+  &,
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
+}
+
+@if vars.$flexify-base-font-size-enabled {
+  html {
+    font-size: 62.5%;
+  }
+
+  body {
+    font-size: 1.6rem;
+  }
+}

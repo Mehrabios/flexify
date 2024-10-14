@@ -1,0 +1,65 @@
+@use 'sass:math';
+@use 'variables' as vars;
+
+@mixin media-breakpoint-up($breakpoint) {
+  $is-smallest-breakpoint: vars.$smallest-breakpoint == $breakpoint;
+
+  @if $is-smallest-breakpoint {
+    @content;
+  } @else {
+    $breakpoint-size: map-get(vars.$flexify-breakpoints, $breakpoint);
+
+    @media (min-width: $breakpoint-size) {
+      @content;
+    }
+  }
+}
+
+@mixin create-container($is-responsive: true) {
+  width: 100%;
+  padding-left: var(--#{vars.$flexify-vars-prefix}container-padding);
+  padding-right: var(--#{vars.$flexify-vars-prefix}container-padding);
+  margin-left: auto;
+  margin-right: auto;
+
+  @if $is-responsive {
+    @each $breakpoint, $container-max-width in vars.$flexify-container-max-width {
+      @include media-breakpoint-up($breakpoint) {
+        max-width: $container-max-width;
+      }
+    }
+  }
+}
+
+@mixin create-row {
+  display: flex;
+  flex-flow: row wrap;
+  margin-left: calc(-1 * var(--#{vars.$flexify-vars-prefix}gutter-size));
+  margin-right: calc(-1 * var(--#{vars.$flexify-vars-prefix}gutter-size));
+
+  & > * {
+    padding-left: var(--#{vars.$flexify-vars-prefix}gutter-size);
+    padding-right: var(--#{vars.$flexify-vars-prefix}container-padding);
+    margin-bottom: calc(2 * var(--#{vars.$flexify-vars-prefix}container-padding));
+  }
+}
+
+@mixin create-column-classes($breakpoint: vars.$smallest-breakpoint, $columns: vars.$flexify-columns) {
+  @include media-breakpoint-up($breakpoint) {
+    $breakpoint-infix: if($breakpoint == vars.$smallest-breakpoint, '', '#{$breakpoint}-');
+
+    &-#{$breakpoint-infix}auto {
+      flex: 1 1 auto;
+    }
+
+    @each $column in $columns {
+      $perc: math.div(100%, $column);
+    
+      @for $i from 1 through $column {
+        &-#{$breakpoint-infix}#{$i}-b#{$column} {
+          flex: 0 0 calc($perc * $i);
+        } 
+      }
+    }
+  }
+}

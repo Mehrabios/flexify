@@ -1,0 +1,12 @@
+@use 'variables' as vars;
+@use 'mixins' as mix;
+
+.row {
+  @include mix.create-row;
+}
+
+.col {
+  @each $breakpoint in vars.$flexify-columns-breakpoint {
+    @include mix.create-column-classes($breakpoint);
+  }
+}

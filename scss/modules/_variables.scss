@@ -1,0 +1,26 @@
+$flexify-vars-prefix: 'flexify-' !default;
+$flexify-base-font-size-enabled: true !default;
+$flexify-breakpoints: (
+  'xs': 0,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xlg': 1200px,
+  'xxlg': 1400px
+) !default;
+
+$flexify-enable-container-classes: true !default;
+$flexify-container-padding: .75rem !default;
+$flexify-container-max-width: (
+  'sm': 540px,
+  'md': 720px,
+  'lg': 960px,
+  'xlg': 1140px,
+  'xxlg': 1320px
+) !default;
+
+$flexify-gutter-size: 1.5rem !default;
+$flexify-columns: 6, 8, 12 !default;
+$flexify-columns-breakpoint: 'xs', 'sm', 'md', 'lg' !default;
+
+$smallest-breakpoint: nth(map-keys($flexify-breakpoints), 1);

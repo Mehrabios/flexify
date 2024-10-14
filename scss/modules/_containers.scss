@@ -1,0 +1,8 @@
+@use 'variables' as vars;
+@use 'mixins' as mix;
+
+@if vars.$flexify-enable-container-classes {
+  .container {
+    @include mix.create-container;
+  }
+}
